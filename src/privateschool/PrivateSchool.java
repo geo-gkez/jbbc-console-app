@@ -7,7 +7,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -24,7 +23,7 @@ public class PrivateSchool {
     static Connection connection = new Connection();
 
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-    //      System.out.println(formatter.format(dt))
+   
 
     static void realMenu() {
 
@@ -37,7 +36,7 @@ public class PrivateSchool {
 
             System.out.println("Insert student: 1");
             System.out.println("Insert trainer: 2");
-            System.out.println("Insert assignments: 3"); // για το ερώτημα vii. assignments per student per course και iii.assignments 
+            System.out.println("Insert assignments: 3"); 
             System.out.println("Insert course: 4");
             System.out.println("print all courses: 5");
             System.out.println("print all students: 6");
@@ -216,7 +215,7 @@ public class PrivateSchool {
 
         for (Assignment as : allAssignments) {
 
-            System.out.println("Assignment ID: " + as.getAssignmentID() + ", Title: " + as.getTitle() + ",  description" + as.getDescription()
+            System.out.println("Assignment ID: " + as.getAssignmentID() + ", Title: " + as.getTitle() + ",  description " + as.getDescription()
                     + ", sub date: " + formatter.format(as.getSubDateTime()) + ", Max oral mark: " + as.getMaxOralMark() + ", Max total mark: " + as.getMaxTotalMark());
 
         }
@@ -274,7 +273,7 @@ public class PrivateSchool {
         for (Assignment as : assignmentsPerCourse) {
 
            
-             System.out.println("Assignment ID: " + as.getAssignmentID() + ", Title: " + as.getTitle() + ",  description" + as.getDescription()
+             System.out.println("Assignment ID: " + as.getAssignmentID() + ", Title: " + as.getTitle() + ",  description " + as.getDescription()
                     + ", sub date: " + formatter.format(as.getSubDateTime()) + ", Max oral mark: " + as.getMaxOralMark() + ", Max total mark: " + as.getMaxTotalMark());
 
             counter++;
@@ -696,7 +695,7 @@ con.allAssignmentsPerCoursePerStudent(studentID);
                 }
 
                 if (checkIfIsWeekend == true) {
-                    System.out.println("Submission date must be between Monday and Friday, your input was: " + subDateTime);
+                    System.out.println("Submission date must be between Monday and Friday, your input was: " + formatter.format(subDateTime));
                 }
 
                 System.out.print("\nInsert a new Submission date: ");
@@ -1100,10 +1099,10 @@ if( StudentToAdded==null){  System.out.println("something going wrong"); realMen
                 printAllStudentsPerCourse(CourseToAdd.getCourseID());
                 System.out.println("------------------------------------------------------------------------------");
                 System.out.println("------------------------------------------------------------------------------");
-                System.out.print("I you want  more registers press Y, if not press something else: ");
+                System.out.print("If you want  to add another student to a course press Y, if not press something else: ");
                 String ansd = sc.next().toUpperCase();
                 if (ansd.equals("Y")) {
-                    realMenu();
+                    addStudentToCourse();
                     return;
                 }
 
@@ -1190,11 +1189,11 @@ List<Trainer> trainersOfCourse=connection.getAllTrainersPerCourse(CourseToAdd.ge
                 printAllTrainersPerCourse(CourseToAdd.getCourseID());
                 System.out.println("------------------------------------------------------------------------------");
                 System.out.println("------------------------------------------------------------------------------");
-                System.out.print("\nI you want  more registers press Y, if not press something else: ");
+                System.out.print("\nIf you want  to add more trainers to a course press Y, if not press something else: ");
                 String ansd = sc.next().toUpperCase();
 
                 if (ansd.equals("Y")) {
-                    realMenu();
+                    addTrainerToCourse();
                     return;
                 }
               
